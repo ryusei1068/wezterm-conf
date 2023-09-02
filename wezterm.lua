@@ -2,7 +2,7 @@ require("format")
 require("status")
 
 return {
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "ChallengerDeep",
 	window_background_opacity = 0.93,
 
 	keys = require("keybinds").keys,

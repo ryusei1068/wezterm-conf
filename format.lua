@@ -10,7 +10,7 @@ end)
 
 local HEADER = ""
 
-local SYMBOL_COLOR = { "#ffb2cc", "#a4a4a4" }
+local SYMBOL_COLOR = { "#ff99ff", "#a4a4a4" }
 local FONT_COLOR = { "#dddddd", "#888888" }
 local BACK_COLOR = "#2d2d2d"
 local HOVER_COLOR = "#434343"
