@@ -13,7 +13,7 @@ return {
 	-- all keybinds disable
 	disable_default_key_bindings = false,
 
-	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 },
+	leader = { key = "=", mods = "CTRL", timeout_milliseconds = 2000 },
 	status_update_interval = 1000,
 
 	window_decorations = "RESIZE",
