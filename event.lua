@@ -2,13 +2,13 @@ local wezterm = require("wezterm")
 
 wezterm.on("toggle-font-size", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
-	overrides.font_size = not overrides.font_size and 12.0 or nil
+	overrides.font_size = not overrides.font_size and 12.5 or nil
 
 	window:set_config_overrides(overrides)
 end)
 
 local DPI_CHANGE_NUM = 140
-local DPI_CHANGE_FONT_SIZE = 10.0
+local DPI_CHANGE_FONT_SIZE = 12.5
 
 local prev_dpi = 0
 
