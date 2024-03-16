@@ -14,7 +14,7 @@ local HEADER_HOST = { Foreground = { Color = "#75b1a9" }, Text = "" }
 local HEADER_CWD = { Foreground = { Color = "#92aac7" }, Text = "" }
 local HEADER_DATE = { Foreground = { Color = "#ffccac" }, Text = "󱪺" }
 local HEADER_TIME = { Foreground = { Color = "#bcbabe" }, Text = "" }
-local HEADER_BATTERY = { Foreground = { Color = "#dfe166" }, Text = "" }
+-- local HEADER_BATTERY = { Foreground = { Color = "#dfe166" }, Text = "" }
 
 local function AddElement(elems, header, str)
 	table.insert(elems, { Foreground = header.Foreground })
@@ -48,18 +48,19 @@ local function GetHostAndCwd(elems, pane)
 		return
 	end
 
-	local cwd_uri = uri:sub(8)
-	local slash = cwd_uri:find("/")
+	local cwd = uri.file_path
+	local hostname = uri.host or wezterm.hostname()
 
-	if not slash then
-		return
+	local dot = hostname:find '[.]'
+	if dot then
+		hostname = hostname:sub(1, dot - 1)
+	end
+	if hostname == '' then
+		hostname = wezterm.hostname()
 	end
 
-	local host = cwd_uri:sub(1, slash - 1)
-	local dot = host:find("[.]")
-
-	AddElement(elems, HEADER_HOST, dot and host:sub(1, dot - 1) or host)
-	AddElement(elems, HEADER_CWD, cwd_uri:sub(slash))
+	AddElement(elems, HEADER_HOST, hostname)
+	AddElement(elems, HEADER_CWD, cwd)
 end
 
 local function GetDate(elems)
@@ -70,15 +71,14 @@ local function GetTime(elems)
 	AddElement(elems, HEADER_TIME, wezterm.strftime("%H:%M"))
 end
 
-local function GetBattery(elems, window)
-	if not window:get_dimensions().is_full_screen then
-		return
-	end
-
-	-- for _, b in ipairs(wezterm.battery_info()) do
-	-- 	AddElement(elems, HEADER_BATTERY, string.format("%.0f%%", b.state_of_charge * 100))
-	-- end
-end
+-- local function GetBattery(elems, window)
+-- 	if not window:get_dimensions().is_full_screen then
+-- 		return
+-- 	end
+-- 	for _, b in ipairs(wezterm.battery_info()) do
+-- 		AddElement(elems, HEADER_BATTERY, string.format("%.0f%%", b.state_of_charge * 100))
+-- 	end
+-- end
 
 local function LeftUpdate(window, pane)
 	local elems = {}
@@ -97,7 +97,7 @@ local function RightUpdate(window, pane)
 
 	GetHostAndCwd(elems, pane)
 	GetDate(elems)
-	GetBattery(elems, window)
+	-- 	GetBattery(elems, window)
 	GetTime(elems)
 
 	window:set_right_status(wezterm.format(elems))
