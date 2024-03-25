@@ -3,7 +3,7 @@ require("status")
 require("event")
 
 return {
-	color_scheme = "ChallengerDeep",
+	color_scheme = require("color_scheme"),
 	window_background_opacity = 0.93,
 
 	font_size = 13.5,
