@@ -1,13 +1,13 @@
 local color_schemes = {
   "ChallengerDeep",
-  "Cyberpunk",
-  "Grape",
-  "Duotone Dark",
-  "Laser",
-  "Sakura",
-  "TokyoNight" }
+  "DoomOne",
+  "Oceanic Next (Gogh)",
+  "One Dark (Gogh)",
+  "nord",
+  "Dracula",
+  "Gruvbox" }
 
-function get_color_scheme()
+local function get_color_scheme()
   local current_date = os.date("*t")
 
   local year = current_date.year
