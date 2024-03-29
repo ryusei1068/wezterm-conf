@@ -14,7 +14,7 @@ local function get_color_scheme()
   local month = current_date.month
   local day = current_date.day
 
-  return color_schemes[(year * 365 + month * 30 + day) % 7]
+  return color_schemes[(year * 365 + month * 30 + day) % 7 + 1]
 end
 
 return get_color_scheme()
