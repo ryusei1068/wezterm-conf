@@ -17,4 +17,4 @@ local function get_color_scheme()
   return color_schemes[(year * 365 + month * 30 + day) % 7 + 1]
 end
 
-return get_color_scheme()
+return "Dracula"
