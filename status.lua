@@ -51,11 +51,11 @@ local function GetHostAndCwd(elems, pane)
 	local cwd = uri.file_path
 	local hostname = uri.host or wezterm.hostname()
 
-	local dot = hostname:find '[.]'
+	local dot = hostname:find("[.]")
 	if dot then
 		hostname = hostname:sub(1, dot - 1)
 	end
-	if hostname == '' then
+	if hostname == "" then
 		hostname = wezterm.hostname()
 	end
 
@@ -71,14 +71,14 @@ local function GetTime(elems)
 	AddElement(elems, HEADER_TIME, wezterm.strftime("%H:%M"))
 end
 
-local function GetBattery(elems, window)
-	if not window:get_dimensions().is_full_screen then
-		return
-	end
-	for _, b in ipairs(wezterm.battery_info()) do
-		AddElement(elems, HEADER_BATTERY, string.format("%.0f%%", b.state_of_charge * 100))
-	end
-end
+-- local function GetBattery(elems, window)
+-- 	if not window:get_dimensions().is_full_screen then
+-- 		return
+-- 	end
+-- 	for _, b in ipairs(wezterm.battery_info()) do
+-- 		AddElement(elems, HEADER_BATTERY, string.format("%.0f%%", b.state_of_charge * 100))
+-- 	end
+-- end
 
 local function LeftUpdate(window, pane)
 	local elems = {}
